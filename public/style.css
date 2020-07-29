@@ -1,0 +1,486 @@
+body {
+    font-family: 'Noto Sans SC', sans-serif;
+}
+
+.logo {
+    max-width: 25%;
+    margin: 2% 7%;
+    position: relative;
+}
+
+.color-section {
+    background-color: #5fdde5;
+}
+
+.white-section {
+    color: #000;
+}
+
+.nav-link2 {
+    color: black;
+}
+
+.nav-stuff {
+    padding: 0 12px;
+    font-family: 'Noto Sans SC', sans-serif;
+    position: relative;
+}
+
+.nav-stuff:after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: #fff;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+
+.nav-stuff:hover:after {
+    width: 100%;
+    left: 0;
+}
+
+.navButton {
+    font-family: 'Montserrat', sans-serif;
+    margin-right: 5px;
+}
+
+.biggest-image {
+    margin: 8% 7%;
+    width: 80%;
+    position: relative;
+}
+
+.title-word {
+    margin: 10% 0;
+    color: #fff;
+    font-family: 'DM Serif Display', serif;
+    font-size: 5rem;
+}
+
+.description {
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+
+    margin-bottom: 80px;
+    font-size: 1.3rem;
+    line-height: 2;
+}
+
+.email-address {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 2;
+    padding-right: 20px;
+}
+
+/*catagories section*/
+
+#Catagories {
+    text-align: center;
+    padding: 6% 10%;
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+.cat-card {
+    padding: 5% 0;
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom-color:
+}
+
+.icons {
+    color: #5fdde5;
+    padding: 20px 0;
+}
+
+h3,
+h5,
+.job-title {
+    font-family: 'DM Serif Display', serif;
+}
+
+.job-title {
+    font-size: 3rem;
+    padding: 6%;
+}
+
+.job-catagories {
+    color: yellow;
+}
+
+/*Features*/
+#features {
+    padding: 5% 9%;
+    color: #fff;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+.feature-heading {
+    font-size: 4rem;
+    text-align: center;
+    font-family: 'DM Serif Display', serif;
+}
+
+#features .icons {
+    color: yellow;
+
+}
+
+.feature-title {
+    font-size: 1.7rem;
+}
+
+.feature-para {
+    padding-bottom: 40px;
+}
+
+
+/*Testimonials*/
+#testimonials {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    padding: 8% 10% 4% 10%;
+}
+
+.testimonial-text {
+    font-family: 'DM Serif Display', serif;
+    padding-bottom: 50px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    height: 50px;
+    width: 50px;
+    outline: black;
+    background-color: yellow;
+    background-size: 100%, 100%;
+    border-radius: 50%;
+}
+
+.testimonials-img {
+    max-width: 20%;
+}
+
+/*press section*/
+#press {
+    text-align: center;
+}
+
+.press-image {
+    max-width: 11%;
+
+}
+
+/*college*/
+#college {
+    font-family: 'Montserrat', sans-serif;
+    padding: 8% 13% 5% 13%;
+    color: #fff;
+}
+
+.college-title {
+    color: #fff;
+    font-family: 'DM Serif Display', serif;
+    font-size: 3.2rem;
+    padding-bottom: 50px;
+}
+
+.college-text {
+    font-size: 1.2rem;
+}
+
+.imageDiv {
+    text-align: center;
+}
+
+.college-image {
+    text-align: center;
+    width: 100%;
+    padding: 0;
+
+}
+
+.college-logo {
+    width: 10%;
+    margin: 40px 20px;
+}
+
+/*signup*/
+#signup {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    padding: 6% 30% 3% 30%;
+}
+
+.signup-title {
+    font-family: 'DM Serif Display', serif;
+    padding-bottom: 30px;
+    font-size: 3rem;
+}
+
+.email-address-bottom {
+    padding: 6% 4%;
+}
+
+.mainlogo {
+    width: 30%;
+
+}
+
+/*footer*/
+#footer {
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    padding: 2% 8%;
+    text-align: left;
+}
+
+.info-logo {
+    width: 30%;
+    padding: 20px 0 30px 0;
+}
+
+h5,h2,
+h4 {
+    font-family: 'DM Serif Display', serif;
+}
+
+.info-link {
+    color: #fff;
+    line-height: 1.3;
+}
+
+li {
+    padding-bottom: 10px;
+}
+
+.footer-list {
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.info-catagories,
+h4 {
+    padding-bottom: 12px;
+}
+
+/*copyright*/
+.copyright-text {
+    position: absolute;
+}
+
+.copyright-logo {
+    position: relative;
+    padding: 0 20px 0 20px;
+}
+
+.copyright-icon-div {
+    text-align: right;
+}
+
+
+/*signup page style*/
+#entireSignup {
+    background-image: url("signup-background2.jpg");
+}
+
+.nav-tabs {
+    margin-top: 3%;
+    border: none;
+    background: #0062cc;
+    border-radius: 1.5rem;
+    width: 28%;
+    margin-bottom: 50px;
+}
+
+.nav-tabs .nav-link {
+    padding: 2%;
+    height: 34px;
+    font-weight: 600;
+    color: #fff;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+}
+
+.nav-tabs .nav-link:hover {
+    border: none;
+}
+
+.nav-tabs .nav-link.active {
+    width: 100px;
+    color: #0062cc;
+    border: 2px solid #0062cc;
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+}
+
+.tab {
+    display: none;
+}
+
+.signupTitle {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem;
+}
+
+.form-signin {
+    padding: 5% 10%;
+}
+
+.signupImage {
+    width: 120%;
+}
+
+.signUpPage {
+    background: #f8f9fa;
+    border-top-left-radius: 10% 50%;
+    border-bottom-left-radius: 10% 50%;
+    margin-top: 4%;
+    margin-bottom: 15%;
+}
+
+.top {
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+.passWord {
+
+    letter-spacing: 1px;
+    font: bold 100% "Lucida Sans Unicode", sans-serif;
+}
+
+.signUpWord {
+    padding-top: 50px;
+    font-size: 2rem;
+    font-family: 'DM Serif Display', serif;
+
+}
+
+.signupleft {
+    color: #fff;
+    text-align: center;
+    padding: 18% 4%;
+
+}
+
+
+/*profile page*/
+#profile {
+    background-color: #d3dbff;
+    padding-bottom: 8%;
+}
+
+.nodisplay{
+    display: none;
+}
+.inputstuff{
+    border: none;
+    border-color: transparent;
+    visibility: hidden;
+}
+.editBTN{
+    border-color: transparent;
+    border:none;
+}
+.hidedisplaystuff{
+    visibility:hidden;
+}
+
+.profile-left {
+    float: right;
+    position: relative;
+    padding-top: 6%;text-align: center;
+
+}
+.profile-right{
+	display: flex;
+	position: relative;
+	padding-top: 3%;
+	margin-left: 5%;
+    margin-right: 20%;
+}
+.secondary-word{
+   color:  #808080;
+   font-size: 1rem;
+}
+.tres-word{
+    color: #808080;
+    font-size: 0.8rem;
+}
+ul{
+    list-style-type: none;
+}
+
+
+@media (max-width: 1028px) {
+    body {
+        text-align: center;
+    }
+
+    /*title*/
+    .email-address {
+        padding-left: 10px;
+        padding-bottom: 30px;
+    }
+
+    .navbar {
+        text-align: left;
+        margin-left: 3%;
+    }
+
+    .navbar-toggler {
+        margin-top: 30px;
+        margin-bottom: 30px;
+
+    }
+
+    .logo {
+        margin-left: 3%;
+    }
+
+    .nav-items {
+        margin-top: 3%;
+    }
+
+    /*Catagories*/
+    .card {
+        display: inline-block;
+    }
+
+    /*colleges*/
+    .college-image {
+        padding-bottom: 50px;
+    }
+
+    /*signup-page*/
+    #signup {
+        padding: 15% 5%;
+    }
+
+    .signup-title {
+        font-size: 1.8rem;
+    }
+
+    .email-address-bottom {
+        padding-top: 5%;
+    }
+
+    /*copyright*/
+    .copyright-text {
+        position: relative;
+    }
+
+    .copyright-icon-div {
+        text-align: center;
+    }
+
+}
