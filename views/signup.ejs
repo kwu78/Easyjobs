@@ -4,12 +4,12 @@
 
     <i class="fa-5x fa fa-coffee signUpIcon" aria-hidden="true"></i>
      <p class="signUpWord">Start here, make a difference in your professional carreer.</p>
-
-
 <!-- 		<img src="collegeStudent.jpg" class="signupImage"> -->
 	</div>
-	<div class="col-md-8 signUpPage">
 
+
+ 
+	<div class="col-md-8 signUpPage">
  <form id="regForm" class="form-signin" method="post" action="/signup" style=text-align:center;> <!-- need to specify this to be able to send datas to app.js -->
    <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
                             <li class="nav-item">
@@ -20,11 +20,15 @@
  	
   <img class="mb-4" src="mainlogo.png" alt="" width="150" height="150">
   <h1 class="h3 mb-3 signupTitle font-weight-normal">Sign up to EasyJobs!</h1>
+
+     <% if (message.length > 0) { %>
+   <div class="alert alert-danger"><%= message %></div>
+ <% } %>
  
 
 <div class="tab" id="employee" aria-labelledby="home-tab" role="tabpanel">
    <div class="form-group input-group input-group-lg mb-3 inputSignUp">
-  <input type="text"  name="userName" class="required form-control input-group-lg top" placeholder="Username*" required autofocus>
+  <input  type="text"  name="username" class="required form-control input-group-lg top" placeholder="Username*" required autofocus>
   </div>
   <div class="form-group input-group input-group-lg mb-3 inputSignUp">
   <input type="password" name="password" class="required form-control input-group-lg passWord"  minlength="8" maxlength="16" placeholder="Password*" required>
@@ -77,16 +81,16 @@
   <div class="form-group input-group input-group-lg mb-3 inputSignUp">
     <div class="row">
       <div class="col-md-6">
-        <input type="text" name="DOB" class="form-control input-group-lg top" placeholder="Date of Birth" required>
+        <input type="text" name="school" class="form-control input-group-lg top" placeholder="Current School(optional)" required>
       </div>
       <div class="col-md-6">
-         <input type="text" name="DOB" class="form-control input-group-lg top" placeholder="Date of Birth" required>
+         <input type="date" name="graddate" class="form-control input-group-lg top" placeholder="Date of Graduation(optional)"required >
       </div>
     <div class="col-md-6">
-       <input type="text" name="DOB" class="form-control input-group-lg top" placeholder="Date of Birth" required>
+       <input type="text" name="grades" class="form-control input-group-lg top" placeholder="GPA(optional)"required >
     </div>
     <div class="col-md-6">
-       <input type="text" name="DOB" class="form-control input-group-lg top" placeholder="Date of Birth" required>
+       <input type="text" name="year" class="form-control input-group-lg top" placeholder="Current Grade(year 1, year 2,etc.. optional)"required >
   </div>
 
   </div>
@@ -98,8 +102,8 @@
 
 <div style="overflow:auto;" >
   <div style="float:right;">
-    <button  type="button" class ="button btn btn-lg btn-primary" id="prevBtn" onclick="Navigate(-1)">Previous</button>
-    <button  type="button" class="button btn btn-lg btn-primary" id="nextBtn" onclick="Navigate(1)">Next</button>
+    <button  type="submit" class ="button btn btn-lg btn-primary" id="prevBtn" onclick="Navigate(-1)">Previous</button>
+    <button  type="submit" class="button btn btn-lg btn-primary" id="nextBtn" onclick="Navigate(1)">Next</button>
   </div>
 </div>
 

@@ -30,7 +30,7 @@ create table Talent
 	Tal_GradLvl varchar(15),
 	Tal_GradGrade decimal,
 	Tal_GradDate date,
-	UserID char(4) not null,
+	UserID int not null,
 )
 
 create table Advisor

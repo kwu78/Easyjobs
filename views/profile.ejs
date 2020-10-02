@@ -25,17 +25,20 @@
       
     </ul>
     <div class="navbarButton" style="display: flex;">
-    <form class=" mt-2 mt-md-0" action="/employee-signup">
+   <!--  <form class=" mt-2 mt-md-0" action="/employee-signup">
       <button class="btn btn-outline-warning my-2 my-sm-0 navButton" type="submit">I'm a Student</button> 
-      </form>
-        <form>
-    <button class="btn btn-outline-primary my-2 my-sm-0 navButton" type="submit">I'm an Employer</button>
+      </form> -->
+        <form class=" mt-2 mt-md-0" action="/logout">
+    <button class="btn btn-outline-warning my-2 my-sm-0 navButton" type="submit">Log Out</button>
      </form>
     </div>
   </div>
 
 </nav>
 
+    <% if (message.length > 0) { %>
+   <div class="alert alert-success"><%= message %></div>
+ <% } %>
 
 <div class="row">
 	<div class="col-lg-4 ">
@@ -46,11 +49,14 @@
     <button class="editBTN btn btn-outline-primary button"style="float: right;" ><i class="fas fa-edit" onclick="change_profile();"></i></button>
   	<img class="card-img-top" src="eddie.jpg" style="width: 55%; margin-top:40px; display:inline-block;"  alt="Card image cap">
     <form action="/profile-basic" method="post">
-    <input placeholder="Your Name" readonly value="<%=Name%>" type="" name="name" class="inputstuff basic"><h2 class="displaystuff card-title"><%=Name%></h5>
-     <input placeholder="Your School" readonly value="<%=University%>" type="" name="university" class="inputstuff basic"><p class="displaystuff card-title secondary-word">University: <%=University%></p>
-    <input placeholder="Brief Intro" readonly value="<%=Intro%>" type="" name="briefIntro" class="inputstuff basic"><p class="displaystuff card-text tres-word "><%=Intro%></p>
-    <input placeholder="Your GPA" readonly value="<%=Grades%>" type="" name="gpa" class="inputstuff basic"><p class="displaystuff card-text tres-word">GPA: <%=Grades%></p>
-    <input placeholder="Your Grad Year" readonly value="<%=Gradyear%>" type="" name="year" class="inputstuff basic"><p class="displaystuff card-text tres-word">Year of Graduation: <%=Gradyear%></p>
+
+    <% for(var i = 0; i< data.length; i++) { %>
+    <input placeholder="Your Name" readonly value="<%=data[i].Tal_EngName%>" type="" name="name" class="inputstuff basic"><h2 class="displaystuff card-title"><%=data[i].Tal_EngName%></h5>
+     <input placeholder="Your School" readonly value="<%=data[i].Tal_GradSchool%>" type="" name="university" class="inputstuff basic"><p class="displaystuff card-title secondary-word">University: <%=data[i].Tal_GradSchool%></p>
+    <input placeholder="Brief Intro" readonly value="Hi I am Eddie" type="" name="briefIntro" class="inputstuff basic"><p class="displaystuff card-text tres-word ">Hi This is Profile</p>
+    <input placeholder="Your GPA" readonly value="<%=data[i].Tal_GradGrade%>" type="" name="gpa" class="inputstuff basic"><p class="displaystuff card-text tres-word">GPA: <%=data[i].Tal_GradGrade%></p>
+    <input placeholder="Your Grad Year" readonly value="<%=data[i].Tal_GradLvl%>" type="" name="year" class="inputstuff basic"><p class="displaystuff card-text tres-word">Year: <%=data[i].Tal_GradLvl%></p>
+       <% } %>
     <button class="basic-save btn btn-primary button" style="visibility:hidden;" name="save" type="submit">Save</button>
     </form>
  	 </div>
@@ -131,6 +137,7 @@
   <div class="card-body ">
  <button id="universityBTN" class="editBTN btn btn-outline-primary button"style="float: right;" onclick="displayon(this.id)" ><i class="fas fa-edit"></i></button>
     <h4 class="card-title">Education</h4>
+   <form action="/profile-basic" method="post">
     <p class="card-text">
     <ul>
       <div class="box " style="float: left; ">
@@ -141,10 +148,10 @@
       <li>
         <div style="display:inline-block; vertical-align:top" >
        <input placeholder="Your Primary Education" value="Lingnan University" type="" name="universitys" class="nodisplay education"> <h5 class="displaystuff">Lingnan University</h5>
-        <p class="secondary-word">Bachelors of Art and Science</p>
-        <p class="tres-word">Ending May 2023</p>
-        <p class="tres-word"><b><em>Major in</em></b> Liberal Art Study</p>
-        <p class="tres-word"><b><em>Cumulative GPA</em></b> 4.0</p>
+       <input placeholder="Your Primary Education" value="Bachelors of Art and Science" type="" name="education" class="nodisplay education"> <p class="displaystuff secondary-word">Bachelors of Art and Science</p>
+        <input placeholder="Your Primary Education" value="Ending May 2023" type="" name="grad" class="nodisplay education"><p class="displaystuff tres-word">Ending May 2023</p>
+       <p class="tres-word"><b><em>Major in</em></b> </p><input placeholder="Your Primary Education" value="Liberal Art Study" type="" name="major" class="nodisplay education"> <p class="tres-word displaystuff">Liberal Art Study</p>
+        <p class="tres-word"><b><em>Cumulative GPA</em></b></p> <input placeholder="Your Primary Education" value="4.0" type="" name="grades" class="nodisplay education"> <p class="displaystuff tres-word">4.0</p>
         </div>
       </li>
 
@@ -159,6 +166,8 @@
       </li>
     </ul>
     </p>
+      <button class="basic-save btn btn-primary button" style="visibility:hidden;" name="save" type="submit">Save</button>
+  </form>
  	 </div>
 		</div>
 	</div>
