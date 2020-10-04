@@ -1,0 +1,118 @@
+<%-include('header.ejs');%>
+<div class="row" id="entireSignup">
+	<div class="col-md-4 signupleft ">
+
+    <i class="fa-5x fa fa-coffee signUpIcon" aria-hidden="true"></i>
+     <p class="signUpWord">Start here, make a difference in your professional carreer.</p>
+<!-- 		<img src="collegeStudent.jpg" class="signupImage"> -->
+	</div>
+
+
+ 
+	<div class="col-md-8 signUpPage">
+ <form id="regForm" class="form-signin" method="post" action="/signup" style=text-align:center;> <!-- need to specify this to be able to send datas to app.js -->
+   <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#employee" role="tab" aria-controls="employee" aria-selected="true">Employee</a>
+                            </li>
+                         
+                        </ul>
+ 	
+  <img class="mb-4" src="mainlogo.png" alt="" width="150" height="150">
+  <h1 class="h3 mb-3 signupTitle font-weight-normal">Sign up to EasyJobs!</h1>
+
+     <% if (message.length > 0) { %>
+   <div class="alert alert-danger"><%= message %></div>
+ <% } %>
+ 
+
+<div class="tab" id="employee" aria-labelledby="home-tab" role="tabpanel">
+   <div class="form-group input-group input-group-lg mb-3 inputSignUp">
+  <input  type="text"  name="username" class="required form-control input-group-lg top" placeholder="Username*" required autofocus>
+  </div>
+  <div class="form-group input-group input-group-lg mb-3 inputSignUp">
+  <input type="password" name="password" class="required form-control input-group-lg passWord"  minlength="8" maxlength="16" placeholder="Password*" required>
+  </div>
+   <div class="form-group input-group input-group-lg mb-3 inputSignUp">
+
+  <input type="email" name="email" class="form-control required input-group-lg bottom" placeholder="Email*" name="">
+</div>
+
+</div>
+
+
+
+
+<div class="tab">
+  <div class="form-group input-group input-group-lg mb-3 inputSignUp">
+        <div class="row">
+            <div class="col-md-6">
+            <input type="text"  name="fName" class="form-control required input-group-lg top" placeholder="First Name*" required autofocus>
+            </div>
+            <div class="col-md-6">
+            <input type="text" name="lName" class="form-control required input-group-lg top" placeholder="Last Name*" required>
+            </div>
+
+          <div class="col-md-6">
+            <input type="text"  name="CnName" class="form-control input-group-lg top " placeholder="Enter your Chinese Name(optional)" >
+           </div>
+            <div class="col-md-6">
+            <input type="radio" name="gender" class="top" value="male"> Male
+            <input type="radio" name="gender" class="top" value="female"> Female
+            </div>
+
+ 
+          <div class="col-md-6">
+          <label for="dob" class="top">Date of Birth:</label>
+          <input type="date" name="DOB" id="dob" class="form-control required input-group-lg " placeholder="Date of Birth" required>
+          </div>
+            <div class="col-md-6">
+            <label for="TEL" class="top">Mobile Phone:</label>
+            <input type="tel" name="Mobilenumber" id="TEL" class="form-control input-group-lg " placeholder="MobileNumber" required>
+            </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="tab">
+  <div class="form-group input-group input-group-lg mb-3 inputSignUp">
+    <div class="row">
+      <div class="col-md-6">
+        <input type="text" name="school" class="form-control input-group-lg top" placeholder="Current School(optional)" required>
+      </div>
+      <div class="col-md-6">
+         <input type="date" name="graddate" class="form-control input-group-lg top" placeholder="Date of Graduation(optional)"required >
+      </div>
+    <div class="col-md-6">
+       <input type="text" name="grades" class="form-control input-group-lg top" placeholder="GPA(optional)"required >
+    </div>
+    <div class="col-md-6">
+       <input type="text" name="year" class="form-control input-group-lg top" placeholder="Current Grade(year 1, year 2,etc.. optional)"required >
+  </div>
+
+  </div>
+</div>
+
+</div>
+
+
+
+<div style="overflow:auto;" >
+  <div style="float:right;">
+    <button  type="submit" class ="button btn btn-lg btn-primary" id="prevBtn" onclick="Navigate(-1)">Previous</button>
+    <button  type="submit" class="button btn btn-lg btn-primary" id="nextBtn" onclick="Navigate(1)">Next</button>
+  </div>
+</div>
+
+  <p class="mt-5 mb-3 text-muted">&copy; EasyJobs</p>
+</form>
+
+	
+</div>
+<%-include('footer.ejs');%>
+
+
+

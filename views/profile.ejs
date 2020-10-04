@@ -1,0 +1,227 @@
+<%-include('header.ejs');%>
+
+<section id="profile" class="white-section">
+	
+	<nav class="navbar navbar-expand-lg navbar-dark ">
+  <a class="navbar-brand" href="#">
+  	<img src="cropped2.jpg" class="logo"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse nav-tgt" id="navbarCollapse">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item nav-stuff active">
+        <a class="nav-link2" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item nav-stuff ">
+        <a class="nav-link2" href="/#Catagories">Browse Job</a>
+      </li>
+       <li class="nav-item nav-stuff">
+        <a class="nav-link2" href="/#features">About Us</a>
+      </li>
+       <li class="nav-item nav-stuff">
+        <a class="nav-link2" href="#">Contact</a>
+      </li>
+      
+    </ul>
+    <div class="navbarButton" style="display: flex;">
+   <!--  <form class=" mt-2 mt-md-0" action="/employee-signup">
+      <button class="btn btn-outline-warning my-2 my-sm-0 navButton" type="submit">I'm a Student</button> 
+      </form> -->
+        <form class=" mt-2 mt-md-0" action="/logout">
+    <button class="btn btn-outline-warning my-2 my-sm-0 navButton" type="submit">Log Out</button>
+     </form>
+    </div>
+  </div>
+
+</nav>
+
+    <% if (message.length > 0) { %>
+   <div class="alert alert-success"><%= message %></div>
+ <% } %>
+
+<div class="row">
+	<div class="col-lg-4 ">
+
+		<div class="row profile-left ">
+			<div class="card " style="width: 18rem;">
+  <div class="card-body ">
+    <button class="editBTN btn btn-outline-primary button"style="float: right;" ><i class="fas fa-edit" onclick="change_profile();"></i></button>
+  	<img class="card-img-top" src="eddie.jpg" style="width: 55%; margin-top:40px; display:inline-block;"  alt="Card image cap">
+    <form action="/profile-basic" method="post">
+
+    <% for(var i = 0; i< data.length; i++) { %>
+    <input placeholder="Your Name" readonly value="<%=data[i].Tal_EngName%>" type="" name="name" class="inputstuff basic"><h2 class="displaystuff card-title"><%=data[i].Tal_EngName%></h5>
+     <input placeholder="Your School" readonly value="<%=data[i].Tal_GradSchool%>" type="" name="university" class="inputstuff basic"><p class="displaystuff card-title secondary-word">University: <%=data[i].Tal_GradSchool%></p>
+    <input placeholder="Brief Intro" readonly value="Hi I am Eddie" type="" name="briefIntro" class="inputstuff basic"><p class="displaystuff card-text tres-word ">Hi This is Profile</p>
+    <input placeholder="Your GPA" readonly value="<%=data[i].Tal_GradGrade%>" type="" name="gpa" class="inputstuff basic"><p class="displaystuff card-text tres-word">GPA: <%=data[i].Tal_GradGrade%></p>
+    <input placeholder="Your Grad Year" readonly value="<%=data[i].Tal_GradLvl%>" type="" name="year" class="inputstuff basic"><p class="displaystuff card-text tres-word">Year: <%=data[i].Tal_GradLvl%></p>
+       <% } %>
+    <button class="basic-save btn btn-primary button" style="visibility:hidden;" name="save" type="submit">Save</button>
+    </form>
+ 	 </div>
+		</div>
+  		</div>
+
+  	<div class="row profile-left">
+			<div class="card" style="width: 18rem;">
+              <div class="card-body">
+  	         
+            <h5 class="card-title">Your Skills</h5>
+              <% for(var i=0; i< passion.length;i++){ %>     
+  <div class="item">  
+  <p><%= passion[i]; %><button class="button btn-sm btn btn-outline-danger" type="submit" name="list">x</button></p>
+  </div>
+<% } %>
+            <div class="form-group">
+            <form class="item" action="/interest" method="post">
+              <div class="input-group" style="display: flex;">
+        <input type="text" name="newInterest" placeholder="New Interest" autocomplete="off">
+        <button class="button btn btn-primary"type="submit" name="list">+</button>
+     
+        </div>
+      </form>
+      </div>
+ 	            </div>
+  	     	</div>
+  	   </div>		
+ 
+ <div class="row profile-left ">
+      <div class="card " style="width: 18rem;">
+  <div class="card-body ">
+    <i class="fa-5x fa-file-text fa" style="color: blue; margin-bottom: 30px;"aria-hidden="true"></i>
+    <h4 class="card-title">Documents</h4>
+     <p class="card-title secondary-word">Resume</p><hr>
+     <p class="card-title secondary-word">Cover Letter</p><hr>
+      <button href="#" type="button" id="save" class="btn btn-block btn-outline-primary">Update my Files</button> 
+   </div>
+    </div>
+      </div>
+
+       <div class="row profile-left ">
+      <div class="card " style="width: 18rem;">
+  <div class="card-body ">
+    <a href=""><i class="fas fa-edit" style="float: right;"></i></a>
+    <i class="fa-5x fa-info fa" style="color: blue; margin-bottom: 30px;"aria-hidden="true"></i>
+    <h4 class="card-title">Personal Information</h4>
+     <p class="card-title secondary-word"><em><b>Email Address:</b></em>eddiechan@gmail.com</p>
+     <p class="card-title secondary-word"><em><b>Gender: </b></em>Male</p> 
+   </div>
+    </div>
+      </div>
+  </div>
+
+
+
+
+<div class="col-lg-8">
+	<div class="row profile-right">
+		<div class="card " style="width: 50rem;">
+  <div class="card-body ">
+
+    <h5 class="card-title">Introduction</h5>
+    <p class="card-text">
+
+    	<form action="/profileIntro" method="post">
+        <div class="form-group">
+    	<textarea readonly placeholder="Introduce yourself" type="checkbox" class="form-control" id="content" name="postBody" cols="40" rows="5"><%=introduce%></textarea>
+  </div>
+    <button onclick="edit()" style="float: right;" href="#" type="button" id="intro_save" class="btn btn-primary">Edit</button> 
+    </form>
+ 	 </div>
+		</div>
+	</div>
+
+<div class="row profile-right">
+		<div class="card " style="width: 50rem;">
+  <div class="card-body ">
+ <button id="universityBTN" class="editBTN btn btn-outline-primary button"style="float: right;" onclick="displayon(this.id)" ><i class="fas fa-edit"></i></button>
+    <h4 class="card-title">Education</h4>
+   <form action="/profile-basic" method="post">
+    <p class="card-text">
+    <ul>
+      <div class="box " style="float: left; ">
+        <img src="lingnan.png" style="width:3rem;  position: relative; margin-right: 40px;">
+      </div>
+  
+
+      <li>
+        <div style="display:inline-block; vertical-align:top" >
+       <input placeholder="Your Primary Education" value="Lingnan University" type="" name="universitys" class="nodisplay education"> <h5 class="displaystuff">Lingnan University</h5>
+       <input placeholder="Your Primary Education" value="Bachelors of Art and Science" type="" name="education" class="nodisplay education"> <p class="displaystuff secondary-word">Bachelors of Art and Science</p>
+        <input placeholder="Your Primary Education" value="Ending May 2023" type="" name="grad" class="nodisplay education"><p class="displaystuff tres-word">Ending May 2023</p>
+       <p class="tres-word"><b><em>Major in</em></b> </p><input placeholder="Your Primary Education" value="Liberal Art Study" type="" name="major" class="nodisplay education"> <p class="tres-word displaystuff">Liberal Art Study</p>
+        <p class="tres-word"><b><em>Cumulative GPA</em></b></p> <input placeholder="Your Primary Education" value="4.0" type="" name="grades" class="nodisplay education"> <p class="displaystuff tres-word">4.0</p>
+        </div>
+      </li>
+
+      <div class="box " style="float: left; padding-bottom: 6rem">
+        <img src="emory.png" style="width:3rem;  position: relative; margin-right: 40px;">
+      </div>
+      <li>
+        <h5>Tianshuiwei Primary School</h5>
+      </li>
+      <li>
+        <h5>Tianshuiwei High School</h5>
+      </li>
+    </ul>
+    </p>
+      <button class="basic-save btn btn-primary button" style="visibility:hidden;" name="save" type="submit">Save</button>
+  </form>
+ 	 </div>
+		</div>
+	</div>
+
+	<div class="row profile-right">
+		<div class="card " style="width: 50rem;">
+  <div class="card-body ">
+     <button id="workBTN" class="editBTN btn btn-outline-primary button"style="float: right;" onclick="displayon(this.id)" ><i class="fas fa-edit"></i></button>
+    <h4 class="card-title">Work Experience</h4>
+    <ul>
+      <li>
+        <h5>Crossroads Foundation</h5>
+        <p class="secondary-word">Hong Kong Distributioner</p>
+        <p class="secondary-word">June 2020-August 2020</p>
+        <p class="tres-word">Hong Kong</p>
+        <p class="tres-word">I helped Mr.Green packaged and process online order to distribute to needed family.</p>
+      </li>
+      <li>
+      </li>
+    <button href="#" type="button" id="save" class="btn btn-block btn-outline-primary">Add More Work Experience</button> 
+    </ul>
+ 	 </div>
+		</div>
+	</div>
+
+
+	<div class="row profile-right">
+		<div class="card " style="width: 50rem;">
+  <div class="card-body ">
+      <a href=""><i class="fas fa-edit" style="float: right;"></i></a>
+    <h4 class="card-title">Related Courses</h5>
+   <ul>
+      <li>
+        <h5>Finance 101</h5>
+        <p class="secondary-word"><b>Couse Description:</b>insights into the management of large amounts of money, especially by governments or large companies</p>
+        
+      </li>
+      <li>
+        <h5>Economy 101</h5>
+        <p class="secondary-word">
+          <b>Course Description:</b>
+          the state of a country or region in terms of the production and consumption of goods and services and the supply of money.
+        </p>
+      </li>
+    <button href="#" type="button" id="save" class="btn btn-block btn-outline-primary">Add More Work Experience</button> 
+    </ul>
+ 	 </div>
+		</div>
+	</div>
+
+
+	</div>
+	</div>
+
+</section>
+
+<%-include('footer.ejs');%>

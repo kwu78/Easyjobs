@@ -1,0 +1,23 @@
+<%-include('header.ejs');%>
+
+  <div id="login">
+
+     <% if (message.length > 0) { %>
+   <div class="alert alert-danger"><%= message %></div>
+ <% } %>
+ 
+  <div class="form-group">
+ <form class="loginPage form-signin" method="post" action="/login"> <!-- need to specify this to be able to send datas to app.js -->
+  <img class="mb-4" src="mainlogo.png" alt="" width="150" height="150">
+  <h1 class="h3 mb-3 font-weight-normal">Log in to EasyJobs!</h1>
+  <input type="text"  name="username" class="form-control" placeholder="Username" required autofocus>
+  <input type="password" name="password" class="form-control" placeholder="Password" required>
+  
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
+   <a style="float: left; padding-top: 30px"href="">Forgot Password?</a><a style="float:right;padding-top: 30px " href="/employee-signup">Create an Account</a>
+  </div>
+
+  <p class="mt-5 mb-3 text-muted">&copy; EasyJobs</p>
+</form>
+</div>
+<%-include('footer.ejs');%>
