@@ -18,45 +18,6 @@ const cookieParser = require("cookie-parser");
 const Email = require('email-templates');
 var nodemailer = require('nodemailer');
 
-var email = nodemailer.createTransport({
-  host: "smtp.mailtrap.io",
-  port: 2525,
-  auth: {
-    user: "01d8955ab45fc0",
-    pass: "c2a82d4d95712d"
-  }
-});
-
-var mailOptions = {
-    from: '"Example Team" <from@example.com>',
-    to: 'a4c9ab2832-3c5ecd@inbox.mailtrap.io',
-    subject: 'Nice Nodemailer test',
-    text: 'Hey there, it’s our first message sent with Nodemailer ;) ',
-    html: '<b>Hey there! </b><br> This is our first message sent with Nodemailer'
-};
-
-email.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            return console.log(error);
-        }
-        console.log('Message sent: %s', info.messageId);
-});
-// const email = new Email({
-//  message: {
-//    from: 'a4c9ab2832-3c5ecd@inbox.mailtrap.io'
-//  },
-//  send: true,
-//  transport: {
-//    host: 'smtp.mailtrap.io',
-//    port: 2525,
-//    ssl: false,
-//    tls: true,
-//    auth: {
-//      user: '01d8955ab45fc0', // your Mailtrap username
-//      pass: 'c2a82d4d95712d' //your Mailtrap password
-//    }
-//  }
-// });
 
 // const GoogleStrategy=require('passport-google-oauth20').Strategy;
 
@@ -65,7 +26,7 @@ var options = {
     host: 'localhost',
     user: 'root',
     password: '1234',
-    database: 'easyjobs',
+    database: 'Easyjobs',
 };
 
 app.use(session({
@@ -192,10 +153,10 @@ passport.deserializeUser(function(id, done) {
     });
 });
 
-
 app.get("/", function(req, res) {
     res.sendFile(__dirname + "/index.html");
 });
+
 app.get("/employee-signup", function(req, res) {
     res.render('signup', { message: req.flash('signupMessage') });
 });
@@ -204,14 +165,12 @@ app.get("/login", function(req, res) {
     res.render("login", { message: req.flash('loginMessage') });
 });
 
-
-
 app.post("/login", passport.authenticate('local-login', {
         succcessRedirect: '/profile',
         failureRedirect: '/login',
         failureFlash: true
-    }),
-    function(req, res) {
+        }),
+      function(req, res) {
         if (req.body.remember) {
             req.session.cookie.maxAge = 1000 * 60 * 4;
         } else {
@@ -231,7 +190,6 @@ app.get("/profile", isLoggedIn, function(req, res) {
     });
 });
 
-
 app.get('/logout', function(req, res) {
     console.log("logging out");
     req.logout();
@@ -246,20 +204,16 @@ function isLoggedIn(req, res, next) {
     res.redirect("/login");
 }
 
-
 app.post("/interest", function(req, res) {
     let interest = req.body.newInterest;
     interests.push(interest);
     res.redirect("/profile");
 });
 
-
-
 app.post("/profileIntro", function(req, res) {
     Introduction = req.body.postBody;
     res.redirect("/profile");
 });
-
 
 app.post("/profile-basic", function(req, res) {
 	var userID=req.user.UserID;
@@ -281,7 +235,6 @@ app.post("/profile-basic", function(req, res) {
 
 
 });
-
 
 app.post("/signup", function(req, res) {
 
@@ -347,6 +300,7 @@ app.post("/signup", function(req, res) {
         }
     });
 });
+
 app.get("/success", function(req, res) {
     res.render("success");
 });
@@ -354,6 +308,34 @@ app.get("/success", function(req, res) {
 app.get('/taken',function(req,res){
     res.render("Taken");
 });
+
+//defining the email sender function
+async function emailSender(target) {
+  // create reusable transporter object using the default SMTP transport
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'Easyjobs998@gmail.com',
+      pass: 'job4me!!'
+    }
+  });
+
+  var mailOptions = {
+    from: 'Easyjobs998@gmail.com',
+    to: target,
+    subject: 'Sending Email using Node.js',
+    text: 'That was easy!'
+  };
+  // send mail with defined transport object
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent to: ' + target);
+    }
+  });
+}
+
 app.post("/", function(req, res) {
             con.query("SELECT *FROM Subscribe WHERE email=?", [req.body.Email], function(err, rows) {
                 if (err) {
@@ -363,13 +345,20 @@ app.post("/", function(req, res) {
                     throw err;
                     con.end();
                 }
+                /*
                 if (rows.length) {
                     console.log("taken");
                     failureFlash = true;
                     req.flash('signupMessage', 'Email is already subscribed');
                     res.redirect('/taken');
-                } else {
+                } */
+                 else {
+                    //Unregistered email: sending email
+                    //formatting the mail
+                    emailSender(req.body.Email).catch(console.error);
 
+                      //inserting into sql
+                    /*
                     con.query("INSERT INTO Subscribe(email) VALUES(?)", req.body.Email, function(err) {
                         if (err) {
                             console.log(err);
@@ -384,13 +373,18 @@ app.post("/", function(req, res) {
                             })
                             res.redirect("/success");
                         }
-                    });
+                    }); */
                 }
             });
 });
 
-            app.listen(3000, function() {
-                console.log("server now running");
-            });
+app.listen(3000, function() {
+    console.log("server now running");
+});
+
+process.on('uncaughtException', function (err) {
+    console.log(err);
+});
+
 
 console.log("EOF");
