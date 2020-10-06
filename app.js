@@ -1,3 +1,4 @@
+//Including modules
 var mysql = require('mysql');
 const express = require("express");
 const ejs = require("ejs");
@@ -30,7 +31,7 @@ var mailOptions = {
     from: '"Example Team" <from@example.com>',
     to: 'a4c9ab2832-3c5ecd@inbox.mailtrap.io',
     subject: 'Nice Nodemailer test',
-    text: 'Hey there, it’s our first message sent with Nodemailer ;) ', 
+    text: 'Hey there, it’s our first message sent with Nodemailer ;) ',
     html: '<b>Hey there! </b><br> This is our first message sent with Nodemailer'
 };
 
@@ -58,11 +59,13 @@ email.sendMail(mailOptions, (error, info) => {
 // });
 
 // const GoogleStrategy=require('passport-google-oauth20').Strategy;
+
+//connecting to mysql and localhost
 var options = {
     host: 'localhost',
     user: 'root',
-    password: 'Bapsxx123',
-    database: 'easyjobs'
+    password: '1234',
+    database: 'easyjobs',
 };
 
 app.use(session({
@@ -134,7 +137,7 @@ app.set("view engine", "ejs");
 //             }
 //             if (rows.length) {
 //                 return done(null, false, req.flash('signupMessage', 'That is alreadytaken'));
-//             } 
+//             }
 //             else {
 //                 const newUserMysql = {
 //                     username: username,
@@ -153,7 +156,7 @@ app.set("view engine", "ejs");
 //     })
 // );
 
-
+//user login
 passport.use('local-login', new LocalStrategy({
         usernameField: 'username',
         passwordField: 'password',
@@ -177,6 +180,7 @@ passport.use('local-login', new LocalStrategy({
                 return done(null, false, req.flash('loginMessage', 'Wrong Password'));
             });
     }));
+
 passport.serializeUser(function(user, done) {
 
     done(null, user.UserID);
@@ -274,7 +278,7 @@ app.post("/profile-basic", function(req, res) {
 			 res.redirect("/profile");
 		}
 	});
-   
+
 
 });
 
@@ -388,3 +392,5 @@ app.post("/", function(req, res) {
             app.listen(3000, function() {
                 console.log("server now running");
             });
+
+console.log("EOF");
