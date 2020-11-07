@@ -104,7 +104,7 @@ section.container-full {
 
 }
 
-ul {
+ul.social-media {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -114,7 +114,7 @@ ul {
 
 
 
-nav {
+nav.social-media-bar {
     position: fixed;
     width: 70px;
     margin-left: 0px;
@@ -123,12 +123,12 @@ nav {
 
 }
 
-nav li {
+nav.social-media-bar li {
     height: 60px;
     position: relative;
 }
 
-nav li a {
+nav.social-media-bar li a {
     color: black;
     display: block;
     height: 100%;
@@ -218,6 +218,14 @@ h2 {
 
 
 /* end actuary */
+
+
+
+/*
+Testing
+*/
+
+
 
 
 body {
@@ -326,10 +334,11 @@ background-size:cover;
     font-family: 'Montserrat', sans-serif;
     line-height: 2;
     padding: 5% 30%;
+    z-index: 100;
 }
 
 /*catagories section*/
-
+/*
 #Catagories {
     text-align: center;
     padding: 6% 19%;
@@ -663,12 +672,12 @@ h4 {
     text-align: center;
     padding: 18% 4%;
 
-}
+} */
 
 
 /*login page*/
 
-
+/*
 #login {
      font-family: 'Montserrat', sans-serif;
      text-align: center;
