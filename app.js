@@ -83,6 +83,16 @@ con.query(sql3, function(err) {
 })
 */
 
+//actuary
+app.get("/actuary", function (req, res) {
+    res.render('actuary')
+});
+
+//contact
+app.get("/contact", function (req, res) {
+    res.render('contact')
+});
+
 var sql = "CREATE TABLE IF NOT EXISTS Users (UserID int NOT NULL AUTO_INCREMENT,username varchar(20) NOT NULL,password varchar(120) NOT NULL,email varchar(50) NOT NULL,type char(3) NOT NULL,constraint PK_UserID PRIMARY KEY(UserID))";
 con.query(sql, function(err, result) {
     if (err) throw err;
