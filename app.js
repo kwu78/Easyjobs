@@ -9,7 +9,6 @@ const session = require('express-session');
 const passport = require('passport');
 const bcrypt = require('bcrypt');
 const bcryptnode = require('bcrypt-nodejs');
-
 const saltRounds = 10;
 const LocalStrategy = require('passport-local').Strategy;
 const MySQLStore = require('mysql-express-session')(session);
@@ -70,13 +69,28 @@ con.query(sql3, function(err) {
     console.log("Subscribe Table Created");
 })
 
-var sql = "CREATE TABLE IF NOT EXISTS Users (UserID int NOT NULL AUTO_INCREMENT,username varchar(20) NOT NULL,password varchar(80) NOT NULL,email varchar(50) NOT NULL,type char(3) NOT NULL,constraint PK_UserID PRIMARY KEY(UserID))";
+/*
+var sql3 = "DROP TABLE Talent"
+con.query(sql3, function(err) {
+    if (err) throw err;
+    console.log("Talent table dropped");
+})
+
+var sql3 = "DROP TABLE Users"
+con.query(sql3, function(err) {
+    if (err) throw err;
+    console.log("Users table dropped");
+})
+*/
+
+var sql = "CREATE TABLE IF NOT EXISTS Users (UserID int NOT NULL AUTO_INCREMENT,username varchar(20) NOT NULL,password varchar(120) NOT NULL,email varchar(50) NOT NULL,type char(3) NOT NULL,constraint PK_UserID PRIMARY KEY(UserID))";
 con.query(sql, function(err, result) {
     if (err) throw err;
     console.log("Users Table created");
 });
 
-var sql2 = "CREATE TABLE IF NOT EXISTS Talent(Tal_ID TINYINT not null AUTO_INCREMENT,Tal_CnName varchar(50),Tal_EngName varchar(50) not null,Tal_DOB DATE not null,Tal_Age tinyint not null,Tal_Gender varchar(10) not null,Tal_MobileNum varchar(15) not null,Tal_HomeNum varchar(15),Tal_Email varchar(50),Tal_Address varchar(50),Tal_Premium char(1) not null,Tal_GradSchool varchar(50),Tal_GradLvl varchar(15),Tal_GradGrade decimal,Tal_GradDate date,UserID int,constraint PK_Tal_ID PRIMARY KEY(Tal_ID),constraint FK_UserID FOREIGN KEY(UserID) references Users(UserID))";
+
+var sql2 = "CREATE TABLE IF NOT EXISTS Talent (Tal_ID tinyint NOT NULL AUTO_INCREMENT,Tal_CnName varchar(50),Tal_EngName varchar(50) not null,Tal_DOB DATE not null,Tal_intro varchar(150),Tal_Age tinyint not null,Tal_Gender varchar(10) not null,Tal_MobileNum varchar(15) not null,Tal_HomeNum varchar(15),Tal_Email varchar(50),Tal_Address varchar(50),Tal_Premium char(1) not null,Tal_GradSchool varchar(50),Tal_GradLvl varchar(15),Tal_GradGrade FLOAT,Tal_GradDate date,UserID int,constraint PK_Tal_ID PRIMARY KEY(Tal_ID),constraint FK_UserID FOREIGN KEY(UserID) references Users(UserID))";
 con.query(sql2, function(err, result) {
     if (err) throw err;
     console.log("Talent Table Created");
@@ -186,7 +200,7 @@ app.get("/profile", isLoggedIn, function(req, res) {
     const sql3 = "SELECT * FROM Talent WHERE UserID=" + userID;
     con.query(sql3, function(err, result) {
         if (err) throw err;
-        res.render('profile', { data: result, passion: interests, introduce: Introduction, message: req.flash('loginMessage') })
+        res.render('profile', { data: result, passion: interests, message: req.flash('loginMessage') })
     });
 });
 
@@ -210,11 +224,6 @@ app.post("/interest", function(req, res) {
     res.redirect("/profile");
 });
 
-app.post("/profileIntro", function(req, res) {
-    Introduction = req.body.postBody;
-    res.redirect("/profile");
-});
-
 app.post("/profile-basic", function(req, res) {
 	var userID=req.user.UserID;
 	sql5="UPDATE Talent SET ? WHERE UserID="+userID;
@@ -233,7 +242,35 @@ app.post("/profile-basic", function(req, res) {
 		}
 	});
 
+  const myForm = document.getElementById("myForm");
+  const inpFile = document.getElementById("inpFile");
 
+  profile-pic.addEventListener("submit", e => {
+    e.preventDefault();
+
+    const endpoint = "upload.php"
+    const formData = new FormData();
+
+    console.log(inpFile.files);
+
+    formData.append("inpFile", inpFile.files[0]);
+  })
+});
+
+app.post("/profile-intro", function(req, res) {
+	var userID=req.user.UserID;
+	sql5="UPDATE Talent SET ? WHERE UserID="+userID;
+	const information= new Object({
+	 "Tal_intro":req.body.postBody
+	});
+	con.query(sql5,information,function(err){
+		if(err){
+			throw err;
+		}
+		else{
+			 res.redirect("/profile");
+		}
+	});
 });
 
 app.post("/signup", function(req, res) {

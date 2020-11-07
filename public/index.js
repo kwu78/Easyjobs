@@ -25,8 +25,10 @@ var x= $(".tab");
 function change_profile(){
 $(".basic").removeAttr('readonly');
 $(".basic-save").css("visibility","visible");
+$(".upload_image").css("display","block");
 $(".basic").removeClass("inputstuff");
 $(".displaystuff").addClass("hidedisplaystuff");
+
 }
 
 function displayon(button){
@@ -37,7 +39,12 @@ $(".displaystuff").addClass("hidedisplaystuff");
   }
 }
 
-
+function upload() {
+$("input[type='image']").click(function() {
+    $("input[id='my_file']").click();
+});
+console.log("hello");
+}
 
 function edit(){
   $("#content").removeAttr('readonly');
@@ -45,7 +52,6 @@ function edit(){
   $("#intro_save").click(function(){
     $("#intro_save").attr("type","submit");
   });
-
 }
 
 function Navigate(n){
@@ -55,7 +61,7 @@ if(n<0){
 }
    else if ( !validation()){
     return false;
-   } 
+   }
 	  x[currentTab].style.display = "none";
 	   currentTab=currentTab+n;
     if (currentTab >= x.length) {
