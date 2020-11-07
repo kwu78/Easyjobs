@@ -1,7 +1,7 @@
 <%-include('header.ejs');%>
 
 <section id="profile" class="white-section">
-	
+
 	<nav class="navbar navbar-expand-lg navbar-dark ">
   <a class="navbar-brand" href="#">
   	<img src="cropped2.jpg" class="logo"></a>
@@ -22,11 +22,11 @@
        <li class="nav-item nav-stuff">
         <a class="nav-link2" href="#">Contact</a>
       </li>
-      
+
     </ul>
     <div class="navbarButton" style="display: flex;">
    <!--  <form class=" mt-2 mt-md-0" action="/employee-signup">
-      <button class="btn btn-outline-warning my-2 my-sm-0 navButton" type="submit">I'm a Student</button> 
+      <button class="btn btn-outline-warning my-2 my-sm-0 navButton" type="submit">I'm a Student</button>
       </form> -->
         <form class=" mt-2 mt-md-0" action="/logout">
     <button class="btn btn-outline-warning my-2 my-sm-0 navButton" type="submit">Log Out</button>
@@ -41,17 +41,17 @@
  <% } %>
 
 <div class="row">
-	<div class="col-lg-4 ">
+	<div class="col-lg-3" style = "align = centered">
 
 		<div class="row profile-left ">
-			<div class="card " style="width: 18rem;">
+			<div class="card" style="width: 18rem;">
   <div class="card-body ">
-    <button class="editBTN btn btn-outline-primary button"style="float: right;" ><i class="fas fa-edit" onclick="change_profile();"></i></button>
-  	<img class="card-img-top" src="eddie.jpg" style="width: 55%; margin-top:40px; display:inline-block;"  alt="Card image cap">
-    <form action="/profile-basic" method="post">
-
+    <button class="editBTN btn btn-outline-primary button"style="position: absolute; right: 15;" ><i class="fas fa-edit" onclick="change_profile();"></i></button>
+  	<image type = "image" class="card-img" src="profile.jpeg" style="width: 55%; margin-top:40px; display:inline-block; align = right"  alt="Card image cap">
+    <form action="/profile-basic" method="post" id="myForm">
+		<input onclick="upload();" type="file" name="filename" size = "100" style="display: none; margin-top:10px; margin-bottom:10px;" class = "upload_image" accept="image/*">
     <% for(var i = 0; i< data.length; i++) { %>
-    <input placeholder="Your Name" readonly value="<%=data[i].Tal_EngName%>" type="" name="name" class="inputstuff basic"><h2 class="displaystuff card-title"><%=data[i].Tal_EngName%></h5>
+    <input placeholder="Your Name" readonly value="<%=data[i].Tal_EngName%>" type="" name="name" class="inputstuff basic"><p class="displaystuff card-title"><%=data[i].Tal_EngName%></p>
      <input placeholder="Your School" readonly value="<%=data[i].Tal_GradSchool%>" type="" name="university" class="inputstuff basic"><p class="displaystuff card-title secondary-word">University: <%=data[i].Tal_GradSchool%></p>
     <input placeholder="Brief Intro" readonly value="Hi I am Eddie" type="" name="briefIntro" class="inputstuff basic"><p class="displaystuff card-text tres-word ">Hi This is Profile</p>
     <input placeholder="Your GPA" readonly value="<%=data[i].Tal_GradGrade%>" type="" name="gpa" class="inputstuff basic"><p class="displaystuff card-text tres-word">GPA: <%=data[i].Tal_GradGrade%></p>
@@ -59,6 +59,7 @@
        <% } %>
     <button class="basic-save btn btn-primary button" style="visibility:hidden;" name="save" type="submit">Save</button>
     </form>
+
  	 </div>
 		</div>
   		</div>
@@ -66,10 +67,10 @@
   	<div class="row profile-left">
 			<div class="card" style="width: 18rem;">
               <div class="card-body">
-  	         
+
             <h5 class="card-title">Your Skills</h5>
-              <% for(var i=0; i< passion.length;i++){ %>     
-  <div class="item">  
+              <% for(var i=0; i< passion.length;i++){ %>
+  <div class="item">
   <p><%= passion[i]; %><button class="button btn-sm btn btn-outline-danger" type="submit" name="list">x</button></p>
   </div>
 <% } %>
@@ -78,14 +79,13 @@
               <div class="input-group" style="display: flex;">
         <input type="text" name="newInterest" placeholder="New Interest" autocomplete="off">
         <button class="button btn btn-primary"type="submit" name="list">+</button>
-     
         </div>
       </form>
       </div>
  	            </div>
   	     	</div>
-  	   </div>		
- 
+  	   </div>
+
  <div class="row profile-left ">
       <div class="card " style="width: 18rem;">
   <div class="card-body ">
@@ -93,7 +93,7 @@
     <h4 class="card-title">Documents</h4>
      <p class="card-title secondary-word">Resume</p><hr>
      <p class="card-title secondary-word">Cover Letter</p><hr>
-      <button href="#" type="button" id="save" class="btn btn-block btn-outline-primary">Update my Files</button> 
+      <button href="#" type="button" id="save" class="btn btn-block btn-outline-primary">Update my Files</button>
    </div>
     </div>
       </div>
@@ -101,11 +101,11 @@
        <div class="row profile-left ">
       <div class="card " style="width: 18rem;">
   <div class="card-body ">
-    <a href=""><i class="fas fa-edit" style="float: right;"></i></a>
+    <a href=""> <i class="fas fa-edit" style="float: right;"></i></a>
     <i class="fa-5x fa-info fa" style="color: blue; margin-bottom: 30px;"aria-hidden="true"></i>
     <h4 class="card-title">Personal Information</h4>
      <p class="card-title secondary-word"><em><b>Email Address:</b></em>eddiechan@gmail.com</p>
-     <p class="card-title secondary-word"><em><b>Gender: </b></em>Male</p> 
+     <p class="card-title secondary-word"><em><b>Gender: </b></em>Male</p>
    </div>
     </div>
       </div>
@@ -114,7 +114,7 @@
 
 
 
-<div class="col-lg-8">
+<div class="col-lg-8" style = "align = centered">
 	<div class="row profile-right">
 		<div class="card " style="width: 50rem;">
   <div class="card-body ">
@@ -122,11 +122,11 @@
     <h5 class="card-title">Introduction</h5>
     <p class="card-text">
 
-    	<form action="/profileIntro" method="post">
+    	<form action="/profile-intro" method="post">
         <div class="form-group">
-    	<textarea readonly placeholder="Introduce yourself" type="checkbox" class="form-control" id="content" name="postBody" cols="40" rows="5"><%=introduce%></textarea>
+    	<textarea readonly placeholder="Introduce yourself" type="checkbox" class="form-control" id="content" name="postBody" cols="40" rows="5"><%=data[0].Tal_intro%></textarea>
   </div>
-    <button onclick="edit()" style="float: right;" href="#" type="button" id="intro_save" class="btn btn-primary">Edit</button> 
+    <button onclick="edit()" style="float: right;" href="#" type="button" id="intro_save" class="btn btn-primary">Edit</button>
     </form>
  	 </div>
 		</div>
@@ -143,7 +143,7 @@
       <div class="box " style="float: left; ">
         <img src="lingnan.png" style="width:3rem;  position: relative; margin-right: 40px;">
       </div>
-  
+
 
       <li>
         <div style="display:inline-block; vertical-align:top" >
@@ -187,7 +187,7 @@
       </li>
       <li>
       </li>
-    <button href="#" type="button" id="save" class="btn btn-block btn-outline-primary">Add More Work Experience</button> 
+    <button href="#" type="button" id="save" class="btn btn-block btn-outline-primary">Add More Work Experience</button>
     </ul>
  	 </div>
 		</div>
@@ -203,7 +203,7 @@
       <li>
         <h5>Finance 101</h5>
         <p class="secondary-word"><b>Couse Description:</b>insights into the management of large amounts of money, especially by governments or large companies</p>
-        
+
       </li>
       <li>
         <h5>Economy 101</h5>
@@ -212,13 +212,11 @@
           the state of a country or region in terms of the production and consumption of goods and services and the supply of money.
         </p>
       </li>
-    <button href="#" type="button" id="save" class="btn btn-block btn-outline-primary">Add More Work Experience</button> 
+    <button href="#" type="button" id="save" class="btn btn-block btn-outline-primary">Add More Work Experience</button>
     </ul>
  	 </div>
 		</div>
 	</div>
-
-
 	</div>
 	</div>
 

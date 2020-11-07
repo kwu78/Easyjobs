@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS Users
 	PRIMARY KEY(UserID)
 );
 
-create table Talent
+CREATE TABLE IF NOT EXISTS Talent
 (
 	Tal_ID varchar(10) not null,
 	Tal_CnName varchar(50),
@@ -30,10 +30,10 @@ create table Talent
 	Tal_GradLvl varchar(15),
 	Tal_GradGrade decimal,
 	Tal_GradDate date,
-	UserID int not null,
-)
+	UserID int not null
+);
 
-create table Advisor
+CREATE TABLE Advisor
 (
 	Adv_ID varchar(10) not null,
 	Adv_CnName varchar(50),
@@ -46,8 +46,8 @@ create table Advisor
 	Adv_Email varchar(50),
 	Adv_Address varchar(50) not null,
 	Adv_Premium char(1) not null,
-	UserID char(4) not null,
-)
+	UserID char(4) not null
+);
 
 create table Experience
 (
@@ -55,8 +55,8 @@ create table Experience
 	Exp_position varchar(20),
 	Exp_duration tinyint,
 	Exp_CompanyName varchar(50),
-	Tal_ID varchar(10) not null,
-)
+	Tal_ID varchar(10) not null
+);
 
 alter table Users
 add constraint PK_UserID primary key(UserID);
@@ -72,3 +72,4 @@ constraint FK_UserID2 foreign key(UserID) references Users(UserID);
 alter table Experience
 add constraint PK_Exp_ID primary key(Exp_ID),
 constraint FK_Tal_ID foreign key(Tal_ID) references Talent(Tal_ID);
+
