@@ -354,6 +354,8 @@ body {
 
 /*catagories section*/
 
+
+
 #Catagories {
     text-align: center;
     padding: 6% 19%;
@@ -361,14 +363,16 @@ body {
 }
 
 .cat-cad {
+    position: relative;
+    vertical-align: middle;
+    align-items: center;
     background-color: #a1ced3;
 }
 
 .cat-content {
-    vertical-align: middle;
-    align-items: center;
-    top: 50%;
-    padding-top: 50%;
+    position: relative;
+    top: 40%;
+
 }
 
 .icons {
@@ -392,6 +396,22 @@ h5,
 }
 
 /*Features*/
+
+/* to be changed*/
+.fill {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+}
+
+.fill img {
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+}
+
 #features {
     padding: 7% 15%;
     color: #000;
