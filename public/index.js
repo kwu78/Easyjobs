@@ -45,7 +45,6 @@ function edit(){
   $("#intro_save").click(function(){
     $("#intro_save").attr("type","submit");
   });
-
 }
 
 function Navigate(n){
@@ -55,7 +54,7 @@ if(n<0){
 }
    else if ( !validation()){
     return false;
-   } 
+   }
 	  x[currentTab].style.display = "none";
 	   currentTab=currentTab+n;
     if (currentTab >= x.length) {

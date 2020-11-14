@@ -70,6 +70,12 @@ con.query(sql3, function(err) {
 })
 
 /*
+var sql3 = "DROP TABLE Education"
+con.query(sql3, function(err) {
+    if (err) throw err;
+    console.log("Education table dropped");
+})
+
 var sql3 = "DROP TABLE Talent"
 con.query(sql3, function(err) {
     if (err) throw err;
@@ -93,18 +99,36 @@ app.get("/contact", function (req, res) {
     res.render('contact')
 });
 
+//create user table
 var sql = "CREATE TABLE IF NOT EXISTS Users (UserID int NOT NULL AUTO_INCREMENT,username varchar(20) NOT NULL,password varchar(120) NOT NULL,email varchar(50) NOT NULL,type char(3) NOT NULL,constraint PK_UserID PRIMARY KEY(UserID))";
 con.query(sql, function(err, result) {
     if (err) throw err;
     console.log("Users Table created");
 });
 
-
-var sql2 = "CREATE TABLE IF NOT EXISTS Talent (Tal_ID tinyint NOT NULL AUTO_INCREMENT,Tal_CnName varchar(50),Tal_EngName varchar(50) not null,Tal_DOB DATE not null,Tal_intro varchar(150),Tal_Age tinyint not null,Tal_Gender varchar(10) not null,Tal_MobileNum varchar(15) not null,Tal_HomeNum varchar(15),Tal_Email varchar(50),Tal_Address varchar(50),Tal_Premium char(1) not null,Tal_GradSchool varchar(50),Tal_GradLvl varchar(15),Tal_GradGrade FLOAT,Tal_GradDate date,UserID int,constraint PK_Tal_ID PRIMARY KEY(Tal_ID),constraint FK_UserID FOREIGN KEY(UserID) references Users(UserID))";
+//create talent table
+var sql2 = "CREATE TABLE IF NOT EXISTS Talent (Tal_ID tinyint NOT NULL AUTO_INCREMENT,Tal_CnName varchar(50)," +
+            "Tal_EngName varchar(50) not null,Tal_DOB DATE not null,Tal_intro varchar(150),Tal_Age tinyint not null," +
+            "Tal_Gender varchar(10) not null,Tal_MobileNum varchar(15) not null,Tal_HomeNum varchar(15)," +
+            "Tal_Email varchar(50),Tal_Address varchar(50),Tal_Premium char(1) not null, UserID int," +
+            "constraint PK_Tal_ID PRIMARY KEY(Tal_ID),constraint FK_UserID FOREIGN KEY(UserID) references Users(UserID))";
 con.query(sql2, function(err, result) {
     if (err) throw err;
     console.log("Talent Table Created");
 });
+
+//create job table
+var sql3 = "CREATE TABLE IF NOT EXISTS Education (Edu_ID int NOT NULL AUTO_INCREMENT, UserID INT," +
+           "School varchar(20) NOT NULL, Grad_grade date," +
+           "degree VARCHAR(150), GPA FLOAT(3, 2), Grad_level varchar(15)," +
+           "Major1 varchar(50), Major2 varchar(50), constraint PK_Edu_ID PRIMARY KEY(Edu_ID)," +
+           "constraint Edu_UserID FOREIGN KEY(UserID) references Users(UserID))";
+
+con.query(sql3, function(err, result) {
+    if (err) throw err;
+    console.log("Education Table Created");
+});
+
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
@@ -207,10 +231,12 @@ app.post("/login", passport.authenticate('local-login', {
 app.get("/profile", isLoggedIn, function(req, res) {
 
     var userID = req.user.UserID;
-    const sql3 = "SELECT * FROM Talent WHERE UserID=" + userID;
+    const sql3 = "SELECT * FROM Talent INNER JOIN Education ON Education.userID = Talent.userID" +
+    " WHERE Education.UserID=" + userID + " ORDER BY Grad_Grade DESC";
     con.query(sql3, function(err, result) {
         if (err) throw err;
-        res.render('profile', { data: result, passion: interests, message: req.flash('loginMessage') })
+        console.log(result);
+        res.render('profile', { talent: result, passion: interests, message: req.flash('loginMessage') })
     });
 });
 
@@ -239,11 +265,20 @@ app.post("/profile-basic", function(req, res) {
 	sql5="UPDATE Talent SET ? WHERE UserID="+userID;
 	const information= new Object({
 	 "Tal_EngName":req.body.name,
-    "Tal_GradSchool":req.body.university,
-    "Tal_GradLvl" :req.body.year,
-    "Tal_GradGrade" : req.body.gpa
 	});
 	con.query(sql5,information,function(err){
+		if(err){
+			throw err;
+		}
+	});
+
+  sql6="UPDATE Education SET ? WHERE UserID="+userID;
+	const info= new Object({
+	 "School":req.body.university,
+   "Grad_level" :req.body.year,
+   "GPA" : req.body.gpa
+	});
+	con.query(sql6,info,function(err){
 		if(err){
 			throw err;
 		}
@@ -252,6 +287,8 @@ app.post("/profile-basic", function(req, res) {
 		}
 	});
 
+
+  /*
   const myForm = document.getElementById("myForm");
   const inpFile = document.getElementById("inpFile");
 
@@ -265,6 +302,7 @@ app.post("/profile-basic", function(req, res) {
 
     formData.append("inpFile", inpFile.files[0]);
   })
+  */
 });
 
 app.post("/profile-intro", function(req, res) {
@@ -338,11 +376,22 @@ app.post("/signup", function(req, res) {
                     }
                 });
                 var values =
-                    req.body.cnName + "','" + req.body.fName + ' ' + req.body.lName + "','" + req.body.DOB + "','" + 99 + "','" + req.body.gender + "','" + req.body.Mobilenumber + "','" + " " + "','" +
-                    req.body.email + "','" + "' " + "','" + "'F'" + "','" + req.body.school + "','" + req.body.year + "','" + req.body.grades + "','" + req.body.graddate +
+                    req.body.cnName + "','" + req.body.fName + ' ' + req.body.lName + "','" + req.body.DOB + "','" + 99 + "','" +
+                    req.body.gender + "','" + req.body.Mobilenumber + "','" + " " + "','" +
+                    req.body.email + "','" + "' " + "','" + "'F'" + "','" + req.body.school + "','" + req.body.year + "','" +
+                    req.body.grades + "','" + req.body.graddate +
                     "')'";
-                con.query("INSERT INTO Talent(Tal_CnName, Tal_EngName,Tal_DOB,Tal_Age,Tal_Gender,Tal_MobileNum, Tal_HomeNum,Tal_Email,Tal_Address,Tal_Premium,Tal_GradSchool,Tal_GradLvl,Tal_GradGrade,Tal_GradDate,UserID) VALUES('" + req.body.cnName + "','" + req.body.fName + '_' + req.body.lName +
-                    "','" + req.body.DOB + "','" + 99 + "','" + req.body.gender + "','" + req.body.Mobilenumber + "','" + '-' + "','" + req.body.email + "','" + '-' + "','" + 'F' + "','" + req.body.school + "','" + req.body.year + "','" + req.body.grades + "','" + req.body.graddate + "',(SELECT UserID FROM Users WHERE username=?))", [req.body.username]);
+                con.query("INSERT INTO Talent(Tal_CnName, Tal_EngName,Tal_DOB,Tal_Age,Tal_Gender,Tal_MobileNum, Tal_HomeNum," +
+                          "Tal_Email,Tal_Address,Tal_Premium,UserID) VALUES('" +
+                          req.body.cnName + "','" + req.body.fName + '_' + req.body.lName +
+                    "','" + req.body.DOB + "','" + 99 + "','" + req.body.gender + "','" + req.body.Mobilenumber +
+                    "','" + "-" + "','" + req.body.email + "','" + '-' + "','" + "F" +
+                    "',(SELECT UserID FROM Users WHERE username=?))",
+                    [req.body.username]);
+
+                con.query("INSERT INTO Education(School, Grad_grade, GPA, Grad_level, UserID) VALUE ('" +
+                          req.body.school + "','" + req.body.graddate + "','" + req.body.grades + "','" + req.body.year +
+                          "',(SELECT UserID FROM Users WHERE username=?))", [req.body.username]);
             });
         }
     });
