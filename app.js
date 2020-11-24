@@ -288,21 +288,21 @@ app.post("/profile-basic", function(req, res) {
 	});
 
 
-  /*
-  const myForm = document.getElementById("myForm");
-  const inpFile = document.getElementById("inpFile");
 
-  profile-pic.addEventListener("submit", e => {
-    e.preventDefault();
+const myForm = document.getElementById("myForm");
+const inpFile = document.getElementById("inpFile");
 
-    const endpoint = "upload.php"
-    const formData = new FormData();
+profile-pic.addEventListener("submit", e => {
+  e.preventDefault();
 
-    console.log(inpFile.files);
+  const endpoint = "upload.php"
+  const formData = new FormData();
 
-    formData.append("inpFile", inpFile.files[0]);
-  })
-  */
+  console.log(inpFile.files);
+
+  formData.append("inpFile", inpFile.files[0]);
+})
+
 });
 
 app.post("/profile-intro", function(req, res) {
@@ -403,6 +403,10 @@ app.get("/success", function(req, res) {
 
 app.get('/taken',function(req,res){
     res.render("Taken");
+});
+
+process.on('uncaughtException', function (err) {
+    console.log(err);
 });
 
 //defining the email sender function
