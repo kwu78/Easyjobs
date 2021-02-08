@@ -75,10 +75,10 @@ textarea.field_custom {
     margin: 20px auto 0;
     width: 80px;
     height: 5px;
-    background-color: darkcyan;
+    background-color: #a1ced3;
 }
 
-/* actuary */
+/* engineer */
 /* social media bar */
 
 
@@ -90,10 +90,12 @@ section.container-full {
     margin: auto;
     width: 90%;
     display: block;
-    background-color: oldlace;
+    background-color: #F2EDE7;
+    padding-bottom: 5%;
 }
 
-.container {
+.container-full {
+    display: block;
     align-content: center;
     /*
     margin-left: 70px;
@@ -139,33 +141,32 @@ nav.social-media-bar li a {
     transition: all .3s linear;
 }
 
-.jumbotron {
-    background-color: oldlace;
 
 
-}
 
-.btn.btn-primary {
-    background-color: darkcyan !important;
-    border-color: darkcyan;
-    min-width: 170px;
-    height: 50px;
-    padding: 0;
+
+#save-spot {
+    display: inline-block;
+    padding: 0.7em 1.4em;
+    margin: 0 0.3em 0.3em 0;
+    border-radius: 0.15em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: #FFFFFF;
+    background-color: #5DABB5;
+    /*    box-shadow: inset 0 -0.6em 0 -0.35em rgba(0, 0, 0, 0.17);*/
     text-align: center;
-    line-height: 52px;
-    font-size: 14px;
-    margin-top: 10px;
-    font-family: 'Montserrat', sans-serif;
-
-}
-
-#wrapper {
     position: relative;
-    top: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
+
+#save-spot:active {
+    top: 0.1em;
+}
+
+
 
 .display-4 {
     text-align: center;
@@ -175,7 +176,7 @@ nav.social-media-bar li a {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 10%;
+    margin-top: 5%;
     width: 80%;
 }
 
@@ -184,23 +185,34 @@ nav.social-media-bar li a {
     text-align: center;
 }
 
-.margin_top_30 {
-    margin-top: 30px;
+.margin_top_5pc {
+    margin-top: 5%;
 }
 
-#actuary {
-    color: darkcyan;
+.margin_bottom_10pc {
+    margin-bottom: 10%;
+}
+
+.description-title {
+    padding-top: 5%;
+    padding-bottom: 3%;
+}
+
+#title_desc {
+    padding-bottom: 50px;
+}
+
+#desc-title {
+    /*line-height: 10%;*/
+    /*vertical-align: text-bottom;*/
+    color: #5DABB5;
     font-weight: 100;
 }
 
-.section.padding_layout_1 .h2 {
-    font-family: 'Montserrat', sans-serif;
-    color: DarkCyan;
-}
 
-h2 {
-    font-family: 'Montserrat', sans-serif;
-    color: DarkCyan;
+.job_desc_heading {
+    font-family: 'Roboto', sans-serif;
+    color: #a1ced3;
 }
 
 .full {
@@ -217,9 +229,7 @@ h2 {
 
 
 
-/* end actuary */
-
-
+/* end engineer */
 
 /*
 Testing
@@ -230,7 +240,7 @@ Testing
 
 body {
     font-family: 'Noto Sans SC', sans-serif;
-    color:black;
+    color: black;
 }
 
 .logo {
@@ -240,8 +250,8 @@ body {
     z-index: 2;
     margin: auto;
 
-    left:0;
-    right:0;
+    left: 0;
+    right: 0;
 
 
 }
@@ -257,11 +267,13 @@ body {
 .nav-link {
     color: #000;
 }
-#title{
+
+#title {
     height: 100%;
     padding-bottom: 100px;
 
 }
+
 .nav-stuff {
     padding: 0 12px;
     font-family: 'Noto Sans SC', sans-serif;
@@ -269,7 +281,7 @@ body {
 }
 
 .nav-stuff:after {
-    background: none repeat scroll 0 0 ;
+    background: none repeat scroll 0 0;
     bottom: 0;
     content: "";
     display: block;
@@ -292,29 +304,32 @@ body {
 }
 
 .biggest-image {
- background-image: url("Laptop.jpg");
+    background-image: url("Laptop.jpg");
 
-  position: absolute;
-background-size:cover;
+    position: absolute;
+    background-size: cover;
 
-  height:100%;
-  width:100%;
-  display:block;
-  filter: blur(5px);
-  -webkit-filter: blur(5px);
-
-}
-.homepage{
-      z-index: 2;
-       text-align: center;
-       padding: 0% 20%;
-       color:white;
-}
-.homepagebtn{
-    background-color:#000000;
-    color:white;
+    height: 100%;
+    width: 100%;
+    display: block;
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
 
 }
+
+.homepage {
+    z-index: 2;
+    text-align: center;
+    padding: 0% 20%;
+    color: white;
+}
+
+.homepagebtn {
+    background-color: #000000;
+    color: white;
+
+}
+
 .title-word {
     margin: 10% 0;
     padding-top: 10%;
@@ -337,24 +352,137 @@ background-size:cover;
     z-index: 100;
 }
 
+/*functions section*/
+
+
+.special .container {
+    margin: auto;
+    align-content: center;
+    text-align: center;
+    margin-left: auto;
+    padding: 0;
+    /*    float: left;*/
+
+}
+
+.percent150 {
+    width: 80%;
+    position: absolute;
+    left: 50%;
+    top: 350%;
+    transform: translate(-50%, -50%);
+}
+
+header.major h2 {
+    font-size: 3em;
+    margin-bottom: 0.5em;
+}
+
+.floatleft {
+    float: left;
+    width: 33%;
+    padding-left: 5%;
+}
+
+.box {
+    /*    border-radius: 4px;*/
+    border: solid 1px rgba(144, 144, 144, 0.25);
+    padding: 10%;
+
+}
+
+#one {
+    margin-top: 350px;
+
+}
+
+.wrapper.style1 {
+    /*    background-color: #F5F5F5;*/
+    /*
+    border-bottom: 1px solid rgba(144, 144, 144, 0.25);
+    border-top: 1px solid rgba(144, 144, 144, 0.25);
+*/
+}
+
+header.major {
+    text-align: center;
+    margin-bottom: 4em;
+}
+
+
+h3 {
+    margin-bottom: 1.5em;
+}
+
+.icon.rounded {
+    background-color: #383b43;
+    border-radius: 50% !important;
+    color: #ffffff;
+    display: inline-block;
+    height: 3.25em;
+    line-height: 3.25em;
+    text-align: center;
+    width: 3.25em;
+}
+
+.icon.rounded.color1 {
+    background-color: #3cadd4;
+}
+
+.icon.rounded.big {
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+}
+
+.icon.rounded.color9 {
+    background-color: #add43c;
+}
+
+.icon.rounded.color6 {
+    background-color: #d43c61;
+}
+
+
+.icon.rounded.color1:hover {
+    background-color: royalblue;
+}
+
 /*catagories section*/
-/*
+
+
+
 #Catagories {
+    justify-content: center;
+    margin: auto;
+    width: 85%;
     text-align: center;
     padding: 6% 19%;
     font-family: 'Montserrat', sans-serif;
+    padding-top: 20%;
 }
 
 .cat-cad {
-   background-color:#a1ced3;
-}
-
-.cat-content{
+    position: relative;
     vertical-align: middle;
     align-items: center;
-    top:50%;
-    padding-top: 50%;
+    background-color: #a1ced3;
 }
+
+
+@media(max-width: 1000px) {
+    .white-section {
+        height: 1000px;
+    }
+}
+
+
+
+.cat-content {
+    position: relative;
+    top: 40%;
+
+}
+
 .icons {
     color: #5fdde5;
     padding: 20px 0;
@@ -369,6 +497,7 @@ h5,
 .job-title {
     font-size: 2.5rem;
     padding: 6%;
+    color: black;
 }
 
 .job-catagories {
@@ -376,6 +505,22 @@ h5,
 }
 
 /*Features*/
+
+/* to be changed*/
+.fill {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+}
+
+.fill img {
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+}
+
 #features {
     padding: 7% 15%;
     color: #000;
@@ -390,14 +535,16 @@ h5,
     font-family: 'DM Serif Display', serif;
 }
 
-.box1{
+.box1 {
     background-color: #f8f7f3;
-    width:150px;
-    height:320px;
+    width: 150px;
+    height: 320px;
 }
-.featurebtn{
+
+.featurebtn {
     margin-top: 10px;
 }
+
 #features .icons {
     color: yellow;
 
@@ -434,39 +581,42 @@ h5,
     background-size: 100%, 100%;
     border-radius: 50%;
 }
-.quote{
+
+.quote {
     font-size: 13px;
 }
 
 .card {
     padding-left: 20px;
     padding-right: 20px;
-    box-shadow: 0 0px 20px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 0px 20px 0 rgba(0, 0, 0, 0.2);
     background-color: #ebebeb;
     transition: 0.9s;
- }
+}
 
 .testimonials-img {
     padding-top: 2rem;
     max-width: 6rem;
 }
-.card-testimonial{
-padding: auto;
-margin: auto;
-align-items: center;
-margin-top: 5%;
-margin-bottom: 4%;
+
+.card-testimonial {
+    padding: auto;
+    margin: auto;
+    align-items: center;
+    margin-top: 5%;
+    margin-bottom: 4%;
 }
 
 .big-image {
- background-image: url("sea.png");
-  position: absolute;
-background-size:cover;
-bottom: 0;
-height:50%;
-width:80%;
-  display:block;
+    background-image: url("sea.png");
+    position: absolute;
+    background-size: cover;
+    bottom: 0;
+    height: 50%;
+    width: 80%;
+    display: block;
 }
+
 /*press section*/
 #press {
     text-align: center;
@@ -482,7 +632,7 @@ width:80%;
     font-family: 'Montserrat', sans-serif;
     padding: 8% 13% 5% 13%;
     color: black;
-     background-color: #a1ced3;
+    background-color: #a1ced3;
 }
 
 .college-title {
@@ -672,23 +822,24 @@ h4 {
     text-align: center;
     padding: 18% 4%;
 
-} */
+}
 
 
 /*login page*/
 
-/*
+
 #login {
-     font-family: 'Montserrat', sans-serif;
-     text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
     padding: 6% 30% 30% 30%;
     background-image: url("signup-background2.jpg");
     color: white;
 }
-#login h1{
+
+#login h1 {
     font-family: 'DM Serif Display', serif;
     font-size: 3rem;
-    margin-top:20px;
+    margin-top: 20px;
     padding-bottom: 30px;
 
 }
