@@ -21,12 +21,7 @@ var nodemailer = require('nodemailer');
 // const GoogleStrategy=require('passport-google-oauth20').Strategy;
 
 //connecting to mysql and localhost
-var options = {
-    host: 'localhost',
-    user: 'root',
-    password: '1234',
-    database: 'Easyjobs',
-};
+
 
 app.use(session({
     key: 'kevinwu',
