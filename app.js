@@ -21,7 +21,12 @@ var nodemailer = require('nodemailer');
 // const GoogleStrategy=require('passport-google-oauth20').Strategy;
 
 //connecting to mysql and localhost
-
+var options = {
+    host: 'localhost',
+    user: 'root',
+    password: '1234',
+    database: 'Easyjobs',
+};
 
 app.use(session({
     key: 'kevinwu',
@@ -383,6 +388,9 @@ async function emailSender(target) {
     // create reusable transporter object using the default SMTP transport
     var transporter = nodemailer.createTransport({
         service: 'gmail',
+        ignoreTLS: false,
+    secure: false,
+        host:'Easyjobs998@gmail.com',
         auth: {
             user: 'Easyjobs998@gmail.com',
             pass: 'job4me!!'
@@ -392,8 +400,8 @@ async function emailSender(target) {
     var mailOptions = {
         from: 'Easyjobs998@gmail.com',
         to: target,
-        subject: 'Sending Email using Node.js',
-        text: 'That was easy!'
+        subject: 'Welcome to Easyjobs',
+        text: 'You will pursue your dream here!'
     };
     // send mail with defined transport object
     transporter.sendMail(mailOptions, function (error, info) {
@@ -414,38 +422,44 @@ app.post("/", function (req, res) {
             throw err;
             con.end();
         }
-        /*
+        
         if (rows.length) {
             console.log("taken");
             failureFlash = true;
             req.flash('signupMessage', 'Email is already subscribed');
             res.redirect('/taken');
-        } */
+        } 
         else {
+
             //Unregistered email: sending email
             //formatting the mail
             emailSender(req.body.Email).catch(console.error);
 
             //inserting into sql
-            /*
-            con.query("INSERT INTO Subscribe(email) VALUES(?)", req.body.Email, function(err) {
+            
+            con.query("INSERT INTO Subscribe(Email) VALUES(?)", req.body.Email, function(err) {
                 if (err) {
                     console.log(err);
                 } else {
-                    console.log("subscribe");
-                    email.send(
-                    {
-                        template:'welcome',
-                        message:{
-                            to:req.body.Email
-                        }
-                    })
+                   
+                    // email.send(
+                    // {
+                    //     template:'welcome',
+                    //     message:{
+                    //         to:req.body.Email
+                    //     }
+                    // });
+                     console.log("subscribe");
                     res.redirect("/success");
                 }
-            }); */
+            }); 
         }
     });
 });
+// app.post("/", function (req, res) {
+//      emailSender(req.body.Email).catch(console.error);
+//  });
+
 
 app.listen(3000, function () {
     console.log("server now running");
