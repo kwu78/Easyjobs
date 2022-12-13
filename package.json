@@ -19,7 +19,7 @@
     "document": "^0.4.7",
     "ejs": "^3.1.5",
     "email-templates": "^7.1.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-session": "^1.17.1",
     "heroku": "^7.44.0",
     "jquery": "^3.5.1",
